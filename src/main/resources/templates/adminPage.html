@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>eLibrary: Admin panel</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-css.css">
+</head>
+
+<body>
+<script src="/js/TweenLite.min.js"></script>
+<!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+
+<div class="container">
+    <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Admin panel</h3>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/book/getall}"
+                          th:object="${allBooksForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Books">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/author/getall}"
+                          th:object="${allAuthorsForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Authors">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/user/getall}"
+                          th:object="${allUserForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Users">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/role/getall}"
+                          th:object="${allRolesForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Roles">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/publisher/getall}"
+                          th:object="${allPublishersForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Publishers">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/category/getall}"
+                          th:object="${allCategoriesForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Categories">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/permition/getall}"
+                          th:object="${allPermitionsForm}" method="get" class="m-t" required>
+                        <fieldset>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="All Permitions">
+                        </fieldset>
+                    </form>
+                    <br>
+                    <br>
+                    <form th:action="@{/logout}" method="post">
+                        <div><input type="submit" value="Logout"/></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

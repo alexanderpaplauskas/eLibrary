@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>eLibrary: Category edition</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-css.css">
+
+</head>
+
+<body>
+
+<script src="/js/delete_record.js"></script>
+
+<script src="/js/get_for_insert.js"></script>
+
+<script src="/js/handle_listproperty.js"></script>
+
+<div class="container">
+    <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please edit the Category data</h3>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/category/update}"
+                          th:object="${editCategoryForm}" method="post" class="m-t">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Id" name="id" type="text"
+                                       th:field="*{id}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Name" name="name" type="text"
+                                       th:field="*{name}" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" name="permitions" id="permitions" type="hidden"
+                                       th:field="*{permitions}">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Permition:</span><br>
+                                    <select name="permset" id="permset" size="4" style="width: 150px;">
+                                    </select>
+                                </label><br>
+                                <fieldset>
+                                    <input class="delete_perm" onclick="delete_cur_item('permitions','permset')" type="button" value="-permition">
+                                    <input class="add_perm" onclick="add_cur_item('permitions','permset','allpermset')" type="button" value="+permition">
+                                    <select name="allpermset" id="allpermset" size="1" style="width: 150px;">
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Description:</span><br>
+                                    <textarea class="form-control" cols="50" rows="4" name="decription" type="text"
+                                              th:field="*{description}"></textarea>
+                                </label><br>
+                            </div>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Update Category">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <form accept-charset="UTF-8" role="form">
+                <fieldset>
+                    <input class="delete_category" onclick="delete_customer('category')" type="button" value="- Delete Category">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).domLoading(fill_all_selects());
+
+    function fill_all_selects() {
+        fill_fild_for_select("permitions", "permset");
+        fill_select_table("permition",20,"allpermset");
+    }
+</script>
+
+</body>
+</html>

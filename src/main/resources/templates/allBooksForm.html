@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>eLibrary: All Books</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-css.css">
+
+    <script>
+        var table_name = "book";
+        var max_size_page = 5;
+
+        function fill_table_columns(customer) {
+            var ddds = "";
+            if ((customer.publisher_date != null) && (customer.publisher_date !=undefined )){
+                var ddd = new Date();
+                ddd.setTime(Date.parse(customer.publisher_date));
+                ddds = ddd.toLocaleDateString();
+            }
+            return '<td>' + customer.id + '</td>' +
+                '<td>' + customer.name + '</td>' +
+                '<td>' + customer.authors + '</td>' +
+                '<td>' + customer.categories + '</td>' +
+                '<td>' + customer.pages + '</td>' +
+                '<td>' + customer.publisher + '</td>' +
+                '<td>' + ddds + '</td>' +
+                '<td>' + customer.language + '</td>' +
+                '<td>' + customer.description + '</td>';
+        }
+    </script>
+
+    <script src="/js/handle_table.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <h1>Books Table</h1>
+    <div class="row col-md-7 table-responsive">
+        <table id="customerTable" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Authors</th>
+                <th>Categories</th>
+                <th>Pages</th>
+                <th>Publisher</th>
+                <th>Publisher date</th>
+                <th>language</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <br>
+        <form accept-charset="UTF-8" role="form">
+            <fieldset>
+                <input class="btn_prev" onclick="go_prev()" type="button" value="<<prev">
+                <input class="btn_next" onclick="go_next()" type="button" value="next>>">
+            </fieldset>
+        </form>
+        <br>
+        <form accept-charset="UTF-8" role="form">
+            <fieldset>
+                <input class="new_book" onclick="edit_customer(0)" type="button" value="+ Book">
+            </fieldset>
+        </form>
+        <br>
+        <form th:action="@{/adminpage}" method="post">
+            <div><input type="submit" value="Go Admin Home"/></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

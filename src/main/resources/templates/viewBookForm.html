@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>eLibrary: Book edition</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-css.css">
+
+</head>
+
+<body>
+
+<script src="/js/delete_record.js"></script>
+
+<script src="/js/get_for_insert.js"></script>
+
+<script src="/js/handle_listproperty.js"></script>
+
+<div class="container">
+    <div class="row vertical-offset-10">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please edit the Book data</h3>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/book/update}"
+                          th:object="${editBookForm}" method="post" class="m-t" >
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Id" name="id" type="text"
+                                       th:field="*{id}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Name" name="name" type="text"
+                                       th:field="*{name}" required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" name="authors" id="authors" type="hidden"
+                                       th:field="*{authors}">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Authors:</span><br>
+                                    <select name="autset" id="autset" size="4" style="width: 300px;">
+                                    </select>
+                                </label><br>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" name="categories" id="categories" type="hidden"
+                                       th:field="*{categories}">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Category:</span><br>
+                                    <select name="catset" id="catset" size="4" style="width: 150px;">
+                                    </select>
+                                </label><br>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Language" name="language" type="text"
+                                       th:field="*{language}" required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" name="publisher" id="publisher" type="hidden"
+                                       th:field="*{publisher}">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Publisher:</span><br>
+                                    <input class="form-control" name="publishertext" id="publishertext" type="text" readonly>
+                                </label><br>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Publisher Date" name="publisher_date" type="date"
+                                       th:field="*{publisher_date}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Pages" name="pages" type="text"
+                                       th:field="*{pages}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Description:</span><br>
+                                    <textarea class="form-control" cols="50" rows="4" name="decription" type="text"
+                                              th:field="*{description}" readonly></textarea>
+                                </label><br>
+                            </div>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Update Book">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).domLoading(fill_all_selects());
+
+    function publisher_is_changes() {
+        var publisher = document.getElementById("publisher");
+        var publishertext = document.getElementById("publishertext");
+        var pubset = document.getElementById("pubset");
+        publisher.value = pubset.options[pubset.selectedIndex].value;
+        publishertext.value = pubset.options[pubset.selectedIndex].text;
+    }
+
+    function set_pubset_selected() {
+        var publisher = document.getElementById("publisher");
+        var publishertext = document.getElementById("publishertext");
+        var pubset = document.getElementById("pubset");
+        var prop1 = JSON.parse(publisher.value);
+        publishertext.value = prop1.name;
+        publisher.value = prop1.id;
+    }
+
+    function fill_all_selects() {
+        fill_fild_for_select("authors", "autset");
+        fill_select_table("author",20,"allautset");
+
+        fill_fild_for_select("categories", "catset");
+        fill_select_table("category",20,"allcatset");
+
+        fill_select_table("publisher",20,"pubset");
+        set_pubset_selected();
+    }
+</script>
+
+</body>
+</html>

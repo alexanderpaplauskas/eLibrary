@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>eLibrary: Publisher edition</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-css.css">
+</head>
+
+<body>
+
+<script src="/js/TweenLite.min.js"></script>
+
+<script src="/js/delete_record.js"></script>
+
+<div class="container">
+    <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please edit the Publisher data</h3>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" role="form" action="#" th:action="@{/publisher/update}"
+                          th:object="${editPublisherForm}" method="post" class="m-t" required>
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Id" name="id" type="text"
+                                       th:field="*{id}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Name" name="name" type="text"
+                                       th:field="*{name}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span>Description:</span><br>
+                                    <textarea class="form-control" cols="50" rows="4" name="decription" type="text"
+                                              th:field="*{description}"></textarea>
+                                </label><br>
+                            </div>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Update Publisher">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <form accept-charset="UTF-8" role="form">
+                <fieldset>
+                    <input class="delete_publisher" onclick="delete_customer('publisher')" type="button" value="- Delete Publisher">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
